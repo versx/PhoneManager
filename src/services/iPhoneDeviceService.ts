@@ -55,6 +55,7 @@ export class iPhoneDevice {
 
   async getScreenshot() {
     try {
+      //ideviceimagemounter /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/10.3/DeveloperDiskImage.dmg  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/10.3/DeveloperDiskImage.dmg.signature
       const destination = `./static/screens/${this.name}.png`;
       const data = await executeCommand(`idevicescreenshot -u ${this.uuid} ${destination}`);
       console.log('screenshot data:', data);
