@@ -33,16 +33,11 @@ const command: Command = {
       }
     }
 
-    if (arg === 'all') {
-      console.log('All devices rebooted successfully.');
-      await message.channel.send(`[${hostname}] All devices rebooted successfully.`);
+    console.log(reboots + ' devices rebooted successfully and ' + fails + ' failed.');
+    if (fails > 0) {
+      await message.channel.send(`[${hostname}] ${reboots} devices rebooted successfully and ${fails} failed.`);
     } else {
-      console.log(reboots + ' devices rebooted successfully and ' + fails + ' failed.');
-      if (fails > 0) {
-        await message.channel.send(`[${hostname}] ${reboots} devices rebooted successfully and ${fails} failed.`);
-      } else {
-        await message.channel.send(`[${hostname}] ${reboots} devices rebooted successfully.`);
-      }
+      await message.channel.send(`[${hostname}] ${reboots} devices rebooted successfully.`);
     }
   },
   permissions: ['Administrator'],
