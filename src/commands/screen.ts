@@ -1,3 +1,5 @@
+import os from 'node:os';
+
 import { iPhoneService } from '../data';
 import { Command } from '../types';
 
@@ -6,7 +8,19 @@ const command: Command = {
   execute: async (message, args) => {
     if (!message.guild) return;
 
-    const arg = args[1];
+    let arg = '';
+    const hostname = os.hostname();
+    if (args.length === 3) {
+      const machineName = args[1];
+      if (machineName !== hostname) {
+        console.debug('not interested machine for command');
+        return;
+      }
+      arg = args[2];
+    } else {
+      arg = args[1];
+    }
+
     if (!arg) {
       await message.channel.send(`Device not found '${arg}'`);
       return;

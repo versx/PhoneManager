@@ -9,6 +9,14 @@ const command: Command = {
     if (!message.guild) return;
 
     const hostname = os.hostname();
+    if (args.length === 2) {
+      const machineName = args[1];
+      if (machineName !== hostname) {
+        console.debug('not interested machine for command');
+        return;
+      }
+    }
+
     const devices = [];
     for (const device of iPhoneService.devices) {
       devices.push(`- ${device.name}`);
